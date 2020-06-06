@@ -33,13 +33,16 @@ function Table(props) {
             Header: "Amount $USD",
             accessor: "amount.amount",
           },
+          {
+            Header: "Balance",
+            accessor: "runningBalance.amount",
+          },
         ],
       },
     ],
     []
   );
 
-  // We'll start our table without any data
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [pageCount, setPageCount] = React.useState(0);
@@ -55,7 +58,6 @@ function Table(props) {
       if (fetchId === fetchIdRef.current) {
         const startRow = pageSize * pageIndex;
         const endRow = startRow + pageSize;
-        console.log(props.transactions);
         setData(props.transactions.slice(startRow, endRow));
         setPageCount(Math.ceil(props.transactions.length / pageSize));
         setLoading(false);

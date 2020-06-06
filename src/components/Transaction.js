@@ -1,6 +1,42 @@
 import React from "react";
 import "../App";
-import { useTable, usePagination } from "react-table";
+import {
+  useTable,
+  useFilters,
+  useGlobalFilter,
+  usePagination,
+} from "react-table";
+
+function SelectColumnFilter({
+  column: { filterValue, setFilter, preFilteredRows, id },
+}) {
+  // Calculate the options for filtering
+  // using the preFilteredRows
+  const options = React.useMemo(() => {
+    const options = new Set();
+    preFilteredRows.forEach((row) => {
+      options.add(row.values[id]);
+    });
+    return [...options.values()];
+  }, [id, preFilteredRows]);
+
+  // Render a multi-select box
+  return (
+    <select
+      value={filterValue}
+      onChange={(e) => {
+        setFilter(e.target.value || undefined);
+      }}
+    >
+      <option value="">All</option>
+      {options.map((option, i) => (
+        <option key={i} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+}
 
 function Transaction({
   columns,
@@ -9,6 +45,14 @@ function Transaction({
   loading,
   pageCount: controlledPageCount,
 }) {
+  const defaultColumn = React.useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: SelectColumnFilter,
+    }),
+    []
+  );
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -29,13 +73,18 @@ function Transaction({
     {
       columns,
       data,
+
       initialState: { pageIndex: 0 }, // Pass our hoisted table state
       manualPagination: true, // Tell the usePagination
       // hook that we'll handle our own data fetching
       // This means we'll also have to provide our own
       // pageCount.
       pageCount: controlledPageCount,
+      defaultColumn, // Be sure to pass the defaultColumn option
+      // filterTypes,
     },
+    useFilters, // useFilters!
+    useGlobalFilter, // useGlobalFilter!
     usePagination
   );
   // listens for changes in pagination
@@ -50,7 +99,11 @@ function Transaction({
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps()}>
+                  {column.render("Header")}
+                  {/* Render the columns filter UI */}
+                  <div>{column.canFilter ? column.render("Filter") : null}</div>
+                </th>
               ))}
             </tr>
           ))}
@@ -95,11 +148,14 @@ function Transaction({
             setPageSize(Number(e.target.value));
           }}
         >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
+          {[10, 20, 30, 40, 50, "all"].map((pageSize) => {
+            if (pageSize === "all") pageSize = 84;
+            return (
+              <option key={pageSize} value={pageSize}>
+                {pageSize !== 84 ? `Show ${pageSize}` : "Show All"}
+              </option>
+            );
+          })}
         </select>
       </div>
     </div>
