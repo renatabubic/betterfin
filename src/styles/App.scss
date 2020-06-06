@@ -85,11 +85,12 @@ img {
 
 .transactions {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.transactions > p {
-  margin-right: 10px;
+.table {
+  margin-bottom: 25px;
 }
 
 .footer {

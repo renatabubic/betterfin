@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
       const res = await axios.get(proxyurl + url);
       const data = res.data;
       this.setState({
-        account: data.accounts.account,
+        account: data.accounts.account[0],
         balances: data.balances,
         transactions: data.trxs.transaction,
       });
@@ -87,14 +87,7 @@ class Dashboard extends React.Component {
     const transactions = this.state.transactions;
     return (
       <div className="dashboard">
-        <h2>Transactions</h2>
-        {/* <div className="single-transaction">
-          {transactions.map((transaction) => {
-            return (
-              <Transaction key={transaction.id} transaction={transaction} />
-            );
-          })} */}
-        {/* </div> */}
+        <h2>Hi, {this.state.account.displayedName}</h2>
         <Table transactions={transactions} />
       </div>
     );
