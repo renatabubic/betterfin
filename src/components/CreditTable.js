@@ -2,29 +2,16 @@ import React from "react";
 import Styles from "../styles/table";
 import Transaction from "./Transaction";
 
-function Table(props) {
+function CreditTable(props) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Transactions",
+        Header: "Credit Transaction Details",
         columns: [
           {
             Header: "Date",
             accessor: "date",
           },
-          {
-            Header: "Base Type",
-            accessor: "baseType",
-          },
-          {
-            Header: "Type",
-            accessor: "type",
-          },
-          {
-            Header: "Category Type",
-            accessor: "categoryType",
-          },
-
           {
             Header: "Category ",
             accessor: "category",
@@ -32,10 +19,12 @@ function Table(props) {
           {
             Header: "Amount $USD",
             accessor: "amount.amount",
+            disableFilters: true,
           },
           {
             Header: "Balance",
             accessor: "runningBalance.amount",
+            disableFilters: true,
           },
         ],
       },
@@ -58,8 +47,13 @@ function Table(props) {
       if (fetchId === fetchIdRef.current) {
         const startRow = pageSize * pageIndex;
         const endRow = startRow + pageSize;
-        setData(props.transactions.slice(startRow, endRow));
-        setPageCount(Math.ceil(props.transactions.length / pageSize));
+
+        let data = props.transactions;
+        let filteredData = data.filter(
+          (transaction) => transaction.baseType === "CREDIT"
+        );
+        setData(filteredData);
+        // setPageCount(Math.ceil(filteredData.length / pageSize));
         setLoading(false);
       }
     },
@@ -79,4 +73,4 @@ function Table(props) {
   );
 }
 
-export default Table;
+export default CreditTable;

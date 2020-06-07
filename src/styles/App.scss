@@ -7,6 +7,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -26,9 +27,13 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
-  justify-content: center;
+  justify-content: end;
   background-color: #fff;
   box-shadow: 1px 0 10px 0 rgba(89, 98, 115, 0.2);
+}
+
+p {
+  margin: 5px;
 }
 
 img {
@@ -83,18 +88,91 @@ img {
   margin-bottom: 150px;
 }
 
+.account-holder-info-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.account-info-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: left;
+}
+.account-info-container > p {
+  margin: 0px;
+}
+.account-select-input {
+  margin: 10px;
+}
 .transactions {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-around;
+}
+
+li {
+  list-style-type: none;
 }
 
 .table {
   margin-bottom: 25px;
 }
 
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.lender-scorecard {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-right: 150px;
+}
+
+.lender-scorecard > button {
+  padding: 5px;
+  margin: 10px;
+}
+
+.lender-scorecard-inner {
+  display: flex;
+  align-items: flex-end;
+  // margin-right: 150px;
+  border: solid 5px #f66652;
+  padding: 5px;
+}
+.text-1 {
+  font-size: 10px;
+  margin: 0px;
+  text-align: left;
+}
+.text-2 {
+  font-size: 10px;
+  margin: 0px;
+}
+#score {
+  font-size: 40px;
+  margin: 0px;
+}
+.lender-scorecard > p {
+  margin: 0px;
+}
+
+//footer.js
 .footer {
-  position: fixed;
+  // position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -104,12 +182,18 @@ img {
 
 .footer-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
-
-.footer-link {
+.footer-logo-icon {
+  height: 15px;
+  margin-right: 6px;
+  margin-left: -2px;
+  align-self: flex-end;
+  padding: 25px;
+}
+#footer-link-inner {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 6px 12px;
   border-radius: 5px;
   -webkit-transition: color 0.2s ease;
@@ -118,8 +202,20 @@ img {
   font-size: 11px;
   line-height: 16px;
   text-transform: uppercase;
+  align-self: center;
+}
+#footer-link-outter {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 6px 12px;
+  border-radius: 5px;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+  align-self: center;
+  flex-grow: 2;
 }
 
-.footer-link > p {
-  box-sizing: border-box;
+#footer-link-outter p:hover {
+  color: #f66652;
+  cursor: pointer;
 }

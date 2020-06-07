@@ -10,8 +10,6 @@ import {
 function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
 }) {
-  // Calculate the options for filtering
-  // using the preFilteredRows
   const options = React.useMemo(() => {
     const options = new Set();
     preFilteredRows.forEach((row) => {
@@ -47,7 +45,6 @@ function Transaction({
 }) {
   const defaultColumn = React.useMemo(
     () => ({
-      // Let's set up our default Filter UI
       Filter: SelectColumnFilter,
     }),
     []
@@ -59,38 +56,26 @@ function Transaction({
     headerGroups,
     rows,
     prepareRow,
-    // page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
     state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
       data,
-
-      initialState: { pageIndex: 0 }, // Pass our hoisted table state
-      manualPagination: true, // Tell the usePagination
-      // hook that we'll handle our own data fetching
-      // This means we'll also have to provide our own
-      // pageCount.
+      initialState: { pageIndex: 0 },
+      // manualPagination: true,
       pageCount: controlledPageCount,
       defaultColumn, // Be sure to pass the defaultColumn option
-      // filterTypes,
     },
-    useFilters, // useFilters!
-    useGlobalFilter, // useGlobalFilter!
+    useFilters,
+    useGlobalFilter,
     usePagination
   );
   // listens for changes in pagination
   React.useEffect(() => {
     fetchData({ pageIndex, pageSize });
   }, [fetchData, pageIndex, pageSize]);
+
+  const firstPageRows = rows.slice(0, 10);
 
   return (
     <div className="transactions">
@@ -109,7 +94,7 @@ function Transaction({
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {firstPageRows.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -123,41 +108,6 @@ function Transaction({
           })}
         </tbody>
       </table>
-      <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
-        </button>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50, "all"].map((pageSize) => {
-            if (pageSize === "all") pageSize = 84;
-            return (
-              <option key={pageSize} value={pageSize}>
-                {pageSize !== 84 ? `Show ${pageSize}` : "Show All"}
-              </option>
-            );
-          })}
-        </select>
-      </div>
     </div>
   );
 }

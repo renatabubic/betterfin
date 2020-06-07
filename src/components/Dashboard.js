@@ -1,94 +1,102 @@
 import React from "react";
 import "../App";
 import axios from "axios";
-import Table from "./Table";
+import CreditTable from "./CreditTable";
+import DebitTable from "./DebitTable";
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 const url = "https://betterfin-public.s3.amazonaws.com/data.json";
-
-const unique = (value, index, self) => {
-  return self.indexOf(value) === index;
-};
 
 class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
+      firstName: "",
+      lastName: "",
       account: [],
+      lenderScore: 3.25,
+      currBalance: 0,
       balances: [],
       transactions: [],
     };
-    this.getUniqueValues = this.getUniqueValues.bind(this);
   }
   async componentDidMount() {
     try {
       const res = await axios.get(proxyurl + url);
       const data = res.data;
+      let firstName =
+        data.accounts.account[0].displayedName
+          .split(" ")[0]
+          .split("")
+          .slice(0, 1)
+          .join("") +
+        data.accounts.account[0].displayedName
+          .split(" ")[0]
+          .split("")
+          .slice(1)
+          .join("")
+          .toLowerCase();
+      let lastName = data.accounts.account[0].displayedName.split(" ")[1];
       this.setState({
+        firstName,
+        lastName,
         account: data.accounts.account[0],
+        currBalance: data.accounts.account[0].balance.amount,
         balances: data.balances,
         transactions: data.trxs.transaction,
       });
-
-      this.getUniqueValues();
     } catch (error) {
       console.log(`There was an error loading data. Error code: ${error}`);
     }
   }
 
-  getUniqueValues() {
-    const baseTypes = this.state.transactions
-      .map((transaction) => transaction.baseType)
-      .filter(unique);
-    const categoryType = this.state.transactions
-      .map((transaction) => transaction.categoryType)
-      .filter(unique);
-    const category = this.state.transactions
-      .map((transaction) => transaction.category)
-      .filter(unique);
-    const categorySource = this.state.transactions
-      .map((transaction) => transaction.categorySource)
-      .filter(unique);
-    const createdDate = this.state.transactions
-      .map((transaction) => transaction.createdDate)
-      .filter(unique);
-    const lastUpdated = this.state.transactions
-      .map((transaction) => transaction.lastUpdated)
-      .filter(unique);
-    const type = this.state.transactions
-      .map((transaction) => transaction.type)
-      .filter(unique);
-    const subType = this.state.transactions
-      .map((transaction) => transaction.subType)
-      .filter(unique);
-    const sourceType = this.state.transactions
-      .map((transaction) => transaction.sourceType)
-      .filter(unique);
-    const date = this.state.transactions
-      .map((transaction) => transaction.date)
-      .filter(unique);
-    const postDate = this.state.transactions
-      .map((transaction) => transaction.postDate)
-      .filter(unique);
-
-    // console.log(baseTypes); //
-    // console.log(categoryType);
-    // console.log(category);
-    // console.log(categorySource); //1 unique value: SYSTEM
-    // console.log(createdDate); //1 unique value: "2019-06-05T23:09:24Z" --> dummy data all created at the same time. Not useful
-    // console.log(lastUpdated); //1 unique value: "2019-06-05T23:09:24Z" --> dummy data all created at the same time & never updated. Not useful
-    // console.log(type);
-    // console.log(subType);
-    // console.log(sourceType); //1 unique value: AGGREGATED
-    // console.log(date);
-    // console.log(postDate);
-  }
   render() {
     const transactions = this.state.transactions;
+    const account = this.state.account;
     return (
       <div className="dashboard">
-        <h2>Hi, {this.state.account.displayedName}</h2>
-        <Table transactions={transactions} />
+        <div className="dashboard-container">
+          <div className="account-holder-info-container">
+            <h2>Hi, {this.state.firstName}</h2>
+            <div className="account-info-container">
+              <p>
+                Information regarding your account with:
+                <select className="account-select-input">
+                  <option> {account.accountName} </option>
+                </select>
+              </p>
+              <ul>
+                <li>Type: {account.accountType}</li>
+                <li>Account number ending in: {account.accountNumber}</li>
+                <li>Current Balance: ${this.state.currBalance}</li>
+              </ul>
+            </div>
+          </div>
+          <div></div>
+          <div className="lender-scorecard">
+            <div className="lender-scorecard-inner">
+              <div>
+                <p className="text-1">YOUR</p>
+                <p className="text-1">LENDER SCORE</p>
+                <p id="score">{this.state.lenderScore}</p>
+              </div>
+              <div className="text-2-container">
+                <p className="text-2">out</p>
+                <p className="text-2"> of 5</p>
+              </div>
+            </div>
+            <button
+              onClick={() => console.log("Sends user to analytical tool")}
+            >
+              Learn how to improve your score
+            </button>
+          </div>
+        </div>
+        <div></div>
+        <div className="table-container">
+          <CreditTable transactions={transactions} />
+          <DebitTable transactions={transactions} />
+        </div>
       </div>
     );
   }

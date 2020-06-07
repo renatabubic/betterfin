@@ -6,12 +6,14 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer-container">
-        <img src={logo} className="logo-icon" alt="logo" />
-        <div className="footer-link">
-          <p>Home</p>
-          <p>Privacy Policy</p>
-          <p>Terms of Service</p>
-          <p>718-416-9507</p>
+        <img src={logo} className="footer-logo-icon" alt="logo" />
+        <div id="footer-link-outter">
+          <div id="footer-link-inner">
+            <p>Home</p>
+            <p>Privacy Policy</p>
+            <p>Terms of Service</p>
+            <p>718-416-9507</p>
+          </div>
         </div>
       </div>
     </div>
