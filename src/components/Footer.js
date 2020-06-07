@@ -15,6 +15,7 @@ function Footer() {
             <p>718-416-9507</p>
           </div>
         </div>
+        <div className="footer-spacer" />
       </div>
     </div>
   );

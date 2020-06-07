@@ -3,9 +3,7 @@ import "../App";
 import axios from "axios";
 import CreditTable from "./CreditTable";
 import DebitTable from "./DebitTable";
-
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
-const url = "https://betterfin-public.s3.amazonaws.com/data.json";
+import { proxyurl, url } from "../secrets";
 
 class Dashboard extends React.Component {
   constructor() {

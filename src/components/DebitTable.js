@@ -17,7 +17,7 @@ function CreditTable(props) {
             accessor: "category",
           },
           {
-            Header: "Amount $USD",
+            Header: "Amount",
             accessor: "amount.amount",
             disableFilters: true,
           },
@@ -52,6 +52,11 @@ function CreditTable(props) {
         let filteredData = data.filter(
           (transaction) => transaction.baseType === "DEBIT"
         );
+        filteredData.map((transaction) => {
+          transaction.runningBalance.amount = `$${transaction.runningBalance.amount}`;
+          transaction.amount.amount = `- $${transaction.amount.amount}`;
+          return transaction;
+        });
         setData(filteredData);
         // setPageCount(Math.ceil(filteredData.length / pageSize));
         setLoading(false);
