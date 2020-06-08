@@ -52,11 +52,11 @@ function CreditTable(props) {
         let filteredData = data.filter(
           (transaction) => transaction.baseType === "DEBIT"
         );
-        filteredData.map((transaction) => {
-          transaction.runningBalance.amount = `$${transaction.runningBalance.amount}`;
-          transaction.amount.amount = `- $${transaction.amount.amount}`;
-          return transaction;
-        });
+        // filteredData.map((transaction) => {
+        //   transaction.runningBalance.amount = `$${transaction.runningBalance.amount}`;
+        //   transaction.amount.amount = `- $${transaction.amount.amount}`;
+        //   return transaction;
+        // });
         setData(filteredData);
         // setPageCount(Math.ceil(filteredData.length / pageSize));
         setLoading(false);
