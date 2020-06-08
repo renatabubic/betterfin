@@ -1,6 +1,6 @@
 import React from "react";
-import CanvasJSReact from "../canvasjs.react";
-import { findPercentage } from "../helperFunctions";
+import CanvasJSReact from "../../canvasjs.react";
+import { findPercentage } from "../../helperFunctions";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function CreditChart(props) {

@@ -1,13 +1,13 @@
 import React from "react";
 import "../App";
 import axios from "axios";
-import CreditTable from "./CreditTable";
-import DebitTable from "./DebitTable";
+import CreditTable from "./Tables/CreditTable";
+import DebitTable from "./Tables/DebitTable";
 import { proxyurl, url } from "../secrets";
-import DebitChart from "./DebitChart";
-import CreditChart from "./CreditChart";
-import MonthlyGraph from "./MonthlyGraph";
-import DailyGraph from "./DailyGraph";
+import DebitChart from "./Charts/DebitChart";
+import CreditChart from "./Charts/CreditChart";
+import MonthlyGraph from "./Graphs/MonthlyGraph";
+import DailyGraph from "./Graphs/DailyGraph";
 import {
   filterHelper,
   mapAndReduceHelper,

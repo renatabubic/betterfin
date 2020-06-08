@@ -1,12 +1,12 @@
 import React from "react";
-import Styles from "../styles/table";
+import Styles from "../../styles/table";
 import Transaction from "./Transaction";
 
 function CreditTable(props) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Debit Transaction Details",
+        Header: "Credit Transaction Details",
         columns: [
           {
             Header: "Date",
@@ -34,7 +34,7 @@ function CreditTable(props) {
 
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [pageCount, setPageCount] = React.useState(0);
+  const [pageCount] = React.useState(0);
   const fetchIdRef = React.useRef(0);
 
   // This will get called when the table needs new data
@@ -47,11 +47,11 @@ function CreditTable(props) {
       if (fetchId === fetchIdRef.current) {
         let data = props.transactions;
         let filteredData = data.filter(
-          (transaction) => transaction.baseType === "DEBIT"
+          (transaction) => transaction.baseType === "CREDIT"
         );
         filteredData.map((transaction) => {
           transaction.runningBalance.amount = `$${transaction.runningBalance.amount}`;
-          transaction.amount.amount = `- $${transaction.amount.amount}`;
+          transaction.amount.amount = `$${transaction.amount.amount}`;
           return transaction;
         });
         setData(filteredData);
