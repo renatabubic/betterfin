@@ -45,20 +45,16 @@ function CreditTable(props) {
       setLoading(true);
 
       if (fetchId === fetchIdRef.current) {
-        const startRow = pageSize * pageIndex;
-        const endRow = startRow + pageSize;
-
         let data = props.transactions;
         let filteredData = data.filter(
           (transaction) => transaction.baseType === "DEBIT"
         );
-        // filteredData.map((transaction) => {
-        //   transaction.runningBalance.amount = `$${transaction.runningBalance.amount}`;
-        //   transaction.amount.amount = `- $${transaction.amount.amount}`;
-        //   return transaction;
-        // });
+        filteredData.map((transaction) => {
+          transaction.runningBalance.amount = `$${transaction.runningBalance.amount}`;
+          transaction.amount.amount = `- $${transaction.amount.amount}`;
+          return transaction;
+        });
         setData(filteredData);
-        // setPageCount(Math.ceil(filteredData.length / pageSize));
         setLoading(false);
       }
     },

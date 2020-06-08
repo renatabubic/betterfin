@@ -62,9 +62,8 @@ function Transaction({
       columns,
       data,
       initialState: { pageIndex: 0 },
-      // manualPagination: true,
       pageCount: controlledPageCount,
-      defaultColumn, // Be sure to pass the defaultColumn option
+      defaultColumn, // pass the defaultColumn option
     },
     useFilters,
     useGlobalFilter,

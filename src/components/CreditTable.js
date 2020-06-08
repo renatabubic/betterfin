@@ -45,9 +45,6 @@ function CreditTable(props) {
       setLoading(true);
 
       if (fetchId === fetchIdRef.current) {
-        const startRow = pageSize * pageIndex;
-        const endRow = startRow + pageSize;
-
         let data = props.transactions;
         let filteredData = data.filter(
           (transaction) => transaction.baseType === "CREDIT"
@@ -58,7 +55,6 @@ function CreditTable(props) {
           return transaction;
         });
         setData(filteredData);
-        // setPageCount(Math.ceil(filteredData.length / pageSize));
         setLoading(false);
       }
     },
