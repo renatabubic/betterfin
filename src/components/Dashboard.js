@@ -218,9 +218,10 @@ class Dashboard extends React.Component {
           </button>
           <button
             className="button"
+            style={{ fontSize: 11.5 }}
             onClick={() => console.log("Sends user to an application.")}
           >
-            Apply for a Loan
+            Compare or Apply for a Loan
           </button>
         </div>
       </div>
