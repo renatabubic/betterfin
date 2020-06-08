@@ -100,11 +100,11 @@ class Dashboard extends React.Component {
       },
     });
   }
+
   getCreditAmounts(data) {
     const creditData = data.trxs.transaction.filter(
       (transaction) => transaction.baseType === "CREDIT"
     );
-
     const all = mapAndReduceHelper(creditData);
     const refunds = filterHelper(creditData, "Refunds/Adjustments");
     const salary = filterHelper(creditData, "Paychecks/Salary");

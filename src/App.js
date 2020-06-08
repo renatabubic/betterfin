@@ -19,12 +19,9 @@ class App extends React.Component {
     try {
       const res = await axios.get(proxyurl + url);
       const data = res.data;
-      let firstName = nameToLowerCase(
-        data.accounts.account[0].displayedName.split(" ")[0]
-      );
-      let lastName = nameToLowerCase(
-        data.accounts.account[0].displayedName.split(" ")[1]
-      );
+      const name = data.accounts.account[0].displayedName.split(" ");
+      let firstName = nameToLowerCase(name[0]);
+      let lastName = nameToLowerCase(name[1]);
       this.setState({
         firstName,
         lastName,

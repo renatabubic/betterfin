@@ -24,7 +24,6 @@ function DailyGraph(props) {
         type: "line",
         indexLabelFontSize: 16,
         dataPoints: dataArray,
-        backgroundcolor: "#f66652",
       },
     ],
   };

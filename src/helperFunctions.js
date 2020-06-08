@@ -28,4 +28,14 @@ const nameToLowerCase = (name) => {
   );
 };
 
-module.exports = { filterHelper, mapAndReduceHelper, nameToLowerCase };
+const findPercentage = (amount, total) => {
+  const num = (amount / total) * 100;
+  return Number(num.toFixed(2));
+};
+
+module.exports = {
+  filterHelper,
+  mapAndReduceHelper,
+  nameToLowerCase,
+  findPercentage,
+};

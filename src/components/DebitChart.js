@@ -1,11 +1,7 @@
 import React from "react";
 import CanvasJSReact from "../canvasjs.react";
+import { findPercentage } from "../helperFunctions";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
-
-const findPercentage = (amount, total) => {
-  const num = (amount / total) * 100;
-  return Number(num.toFixed(2));
-};
 
 function DebitChart(props) {
   const debitAmount = props.debitAmount;
