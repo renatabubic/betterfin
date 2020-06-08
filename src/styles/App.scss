@@ -60,7 +60,8 @@
 }
 .side-panel button {
   width: 175px;
-  margin: 20px;
+  margin-left: 20px;
+  margin-bottom: 5px;
 }
 
 //misc. styling
@@ -210,7 +211,7 @@ li {
   display: flex;
   align-items: flex-end;
   padding: 20px;
-  border: solid 5px #f66652;
+  border: solid 5px #f5a623;
   border-radius: 50%;
 }
 .text-1 {

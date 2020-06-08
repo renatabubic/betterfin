@@ -216,6 +216,12 @@ class Dashboard extends React.Component {
           >
             Speak to an Advisor
           </button>
+          <button
+            className="button"
+            onClick={() => console.log("Sends user to an application.")}
+          >
+            Apply for a Loan
+          </button>
         </div>
       </div>
     );
