@@ -17,7 +17,7 @@ function CreditTable(props) {
             accessor: "category",
           },
           {
-            Header: "Amount",
+            Header: "Amount (USD)",
             accessor: "amount.amount",
             disableFilters: true,
           },
@@ -51,7 +51,7 @@ function CreditTable(props) {
         );
         filteredData.map((transaction) => {
           transaction.runningBalance.amount = `$${transaction.runningBalance.amount}`;
-          transaction.amount.amount = `- $${transaction.amount.amount}`;
+          transaction.amount.amount = `-$${transaction.amount.amount}`;
           return transaction;
         });
         setData(filteredData);

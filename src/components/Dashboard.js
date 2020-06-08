@@ -157,6 +157,7 @@ class Dashboard extends React.Component {
                 </div>
               </div>
               <button
+                className="button"
                 onClick={() => console.log("Sends user to analytical tool")}
               >
                 Learn how to improve your score
@@ -194,7 +195,28 @@ class Dashboard extends React.Component {
             <DebitTable transactions={transactions} />
           </div>
         </div>
-        <div className="side-panel">side panel</div>
+        <div className="side-panel">
+          <button
+            className="button"
+            onClick={() =>
+              console.log(
+                "Sends user to a page where they can set financial goals for themselves"
+              )
+            }
+          >
+            Set Goals
+          </button>
+          <button
+            className="button"
+            onClick={() =>
+              console.log(
+                "Sends user to a page to book time with a financial advisor."
+              )
+            }
+          >
+            Speak to an Advisor
+          </button>
+        </div>
       </div>
     );
   }

@@ -21,7 +21,7 @@
   top: 0;
   right: 0;
   z-index: 100;
-  display: -webkit-flex;
+  // display: -webkit-flex;
   display: flex;
   padding-right: 40px;
   padding-left: 40px;
@@ -52,9 +52,17 @@
 //side panels
 
 .side-panel {
-  width: 100px;
+  width: 400px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 300px;
 }
+.side-panel button {
+  width: 175px;
+  margin: 20px;
+}
+
 //misc. styling
 p {
   margin: 5px;
@@ -110,6 +118,11 @@ img {
   text-align: center;
 }
 
+button:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #2583fd;
+}
+
 //dashboard
 .dashboard {
   margin-top: 150px;
@@ -141,6 +154,9 @@ img {
 }
 .account-select-input {
   margin: 10px;
+}
+select:hover {
+  cursor: pointer;
 }
 .transactions {
   display: flex;

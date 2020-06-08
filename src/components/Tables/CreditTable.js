@@ -17,7 +17,7 @@ function CreditTable(props) {
             accessor: "category",
           },
           {
-            Header: "Amount",
+            Header: "Amount (USD)",
             accessor: "amount.amount",
             disableFilters: true,
           },
