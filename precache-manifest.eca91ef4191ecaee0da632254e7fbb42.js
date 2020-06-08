@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "67900fc5688bbe1355fc4d22466ccc89",
+    "revision": "9529d90459412b65d455ddb8a2a7fcd4",
     "url": "/betterfin/index.html"
   },
   {
-    "revision": "853b7eebfeaeac63f243",
-    "url": "/betterfin/static/css/main.2ad1730c.chunk.css"
+    "revision": "b3716ba5007e31048256",
+    "url": "/betterfin/static/css/main.c814f3c1.chunk.css"
   },
   {
     "revision": "46a1cf2e1d26b4c4a643",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/betterfin/static/js/2.63abe10d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "853b7eebfeaeac63f243",
-    "url": "/betterfin/static/js/main.dda9f662.chunk.js"
+    "revision": "b3716ba5007e31048256",
+    "url": "/betterfin/static/js/main.45b9b27a.chunk.js"
   },
   {
     "revision": "f7c18f04598e8fb49422",
