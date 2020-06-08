@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import axios from "axios";
 import { proxyurl, url } from "./secrets";
+import { nameToLowerCase } from "./helperFunctions";
 
 class App extends React.Component {
   constructor() {
@@ -18,30 +19,12 @@ class App extends React.Component {
     try {
       const res = await axios.get(proxyurl + url);
       const data = res.data;
-      let firstName =
-        data.accounts.account[0].displayedName
-          .split(" ")[0]
-          .split("")
-          .slice(0, 1)
-          .join("") +
-        data.accounts.account[0].displayedName
-          .split(" ")[0]
-          .split("")
-          .slice(1)
-          .join("")
-          .toLowerCase();
-      let lastName =
-        data.accounts.account[0].displayedName
-          .split(" ")[1]
-          .split("")
-          .slice(0, 1)
-          .join("") +
-        data.accounts.account[0].displayedName
-          .split(" ")[1]
-          .split("")
-          .slice(1)
-          .join("")
-          .toLowerCase();
+      let firstName = nameToLowerCase(
+        data.accounts.account[0].displayedName.split(" ")[0]
+      );
+      let lastName = nameToLowerCase(
+        data.accounts.account[0].displayedName.split(" ")[1]
+      );
       this.setState({
         firstName,
         lastName,

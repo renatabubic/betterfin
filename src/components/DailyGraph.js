@@ -14,7 +14,7 @@ function DailyGraph(props) {
     animationEnabled: true,
     theme: "light2",
     title: {
-      text: "Daily Overview",
+      text: "Daily Balance Overview",
     },
     axisY: {
       includeZero: false,
@@ -24,6 +24,7 @@ function DailyGraph(props) {
         type: "line",
         indexLabelFontSize: 16,
         dataPoints: dataArray,
+        backgroundcolor: "#f66652",
       },
     ],
   };

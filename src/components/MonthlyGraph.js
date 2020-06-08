@@ -14,7 +14,7 @@ function MonthlyGraph(props) {
     animationEnabled: true,
     theme: "light2",
     title: {
-      text: "Monthly Overview",
+      text: "Monthly Balance Overview",
     },
     axisY: {
       includeZero: false,

@@ -8,36 +8,17 @@ import DebitChart from "./DebitChart";
 import CreditChart from "./CreditChart";
 import MonthlyGraph from "./MonthlyGraph";
 import DailyGraph from "./DailyGraph";
-
-const reducer = (accum, currVal) => accum + currVal;
-const filterHelper = (data, categoryName) => {
-  let filterData;
-  if (categoryName === "other") {
-    filterData = data.filter(
-      (transaction) =>
-        transaction.category !== "Insurance" &&
-        transaction.category !== "Utilities" &&
-        transaction.category !== "Online Services" &&
-        transaction.category !== "Transfers"
-    );
-  } else {
-    filterData = data.filter(
-      (transaction) => transaction.category === categoryName
-    );
-  }
-  return mapAndReduceHelper(filterData);
-};
-
-const mapAndReduceHelper = (data) => {
-  return data.map((transaction) => transaction.amount.amount).reduce(reducer);
-};
+import {
+  filterHelper,
+  mapAndReduceHelper,
+  nameToLowerCase,
+} from "../helperFunctions";
 
 class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
       firstName: "",
-      lastName: "",
       account: [],
       lenderScore: 3.25,
       currBalance: 0,
@@ -67,7 +48,6 @@ class Dashboard extends React.Component {
     this.getDebitAmounts = this.getDebitAmounts.bind(this);
     this.getCreditAmounts = this.getCreditAmounts.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   async componentDidMount() {
     try {
@@ -75,22 +55,11 @@ class Dashboard extends React.Component {
       const data = res.data;
       this.getDebitAmounts(data);
       this.getCreditAmounts(data);
-      let firstName =
-        data.accounts.account[0].displayedName
-          .split(" ")[0]
-          .split("")
-          .slice(0, 1)
-          .join("") +
-        data.accounts.account[0].displayedName
-          .split(" ")[0]
-          .split("")
-          .slice(1)
-          .join("")
-          .toLowerCase();
-      let lastName = data.accounts.account[0].displayedName.split(" ")[1];
+      let firstName = nameToLowerCase(
+        data.accounts.account[0].displayedName.split(" ")[0]
+      );
       this.setState({
         firstName,
-        lastName,
         account: data.accounts.account[0],
         currBalance: data.accounts.account[0].balance.amount,
         dailyBalance: {
@@ -146,11 +115,6 @@ class Dashboard extends React.Component {
 
   handleChange(event) {
     this.setState({ chartToggle: event.target.value });
-    this.handleSubmit(event);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
   }
 
   render() {
@@ -166,7 +130,10 @@ class Dashboard extends React.Component {
               <div className="account-info-container">
                 <p>
                   Information regarding your account with:
-                  <select className="account-select-input">
+                  <select
+                    className="account-select-input"
+                    style={{ padding: 10, fontSize: 16, fontWeight: "bold" }}
+                  >
                     <option> {account.accountName} </option>
                   </select>
                 </p>
@@ -197,7 +164,16 @@ class Dashboard extends React.Component {
             </div>
           </div>
           <div className="graph-container">
-            <select onChange={this.handleChange} className="graph-select-input">
+            <select
+              onChange={this.handleChange}
+              className="graph-select-input"
+              style={{
+                padding: 10,
+                margin: 15,
+                fontSize: 16,
+                fontWeight: "bold",
+              }}
+            >
               <option value={"day"}> By Day </option>
               <option value={"month"}> By Month </option>
             </select>
