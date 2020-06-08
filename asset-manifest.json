@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/betterfin/static/css/main.101d109e.chunk.css",
+    "main.js": "/betterfin/static/js/main.a8a30838.chunk.js",
+    "main.js.map": "/betterfin/static/js/main.a8a30838.chunk.js.map",
+    "runtime-main.js": "/betterfin/static/js/runtime-main.c1125ecf.js",
+    "runtime-main.js.map": "/betterfin/static/js/runtime-main.c1125ecf.js.map",
+    "static/js/2.63abe10d.chunk.js": "/betterfin/static/js/2.63abe10d.chunk.js",
+    "static/js/2.63abe10d.chunk.js.map": "/betterfin/static/js/2.63abe10d.chunk.js.map",
+    "index.html": "/betterfin/index.html",
+    "precache-manifest.59ac68b6011dd0eec769d99e4b78f023.js": "/betterfin/precache-manifest.59ac68b6011dd0eec769d99e4b78f023.js",
+    "service-worker.js": "/betterfin/service-worker.js",
+    "static/css/main.101d109e.chunk.css.map": "/betterfin/static/css/main.101d109e.chunk.css.map",
+    "static/js/2.63abe10d.chunk.js.LICENSE.txt": "/betterfin/static/js/2.63abe10d.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/betterfin/static/media/logo.cb35d281.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c1125ecf.js",
+    "static/js/2.63abe10d.chunk.js",
+    "static/css/main.101d109e.chunk.css",
+    "static/js/main.a8a30838.chunk.js"
+  ]
+}
